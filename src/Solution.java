@@ -6,28 +6,26 @@ public class Solution {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         
-        // TODO: Read a single line of text
-        if (!scanner.hasNextLine()) return;
-        String input = scanner.nextLine();
+        // Read a single line of text
+        String line = scanner.nextLine();
         
-        // TODO: Split the text into individual words
-        // \\s+ handles multiple spaces between words
-        String[] words = input.trim().split("\\s+");
+        // Split the text into individual words
+        String[] words = line.split(" ");
         
-        // TODO: Create a HashMap to store the frequency of each word
-        HashMap<String, Integer> frequencyMap = new HashMap<>();
+        // Create a HashMap to store frequencies
+        HashMap<String, Integer> freqMap = new HashMap<>();
         
-        // TODO: Iterate through the words and update their frequencies in the map
+        // Count frequencies
         for (String word : words) {
-            if (!word.isEmpty()) {
-                // getOrDefault returns the current count or 0 if the word is new
-                frequencyMap.put(word, frequencyMap.getOrDefault(word, 0) + 1);
+            if (freqMap.containsKey(word)) {
+                freqMap.put(word, freqMap.get(word) + 1);
+            } else {
+                freqMap.put(word, 1);
             }
         }
         
-        // TODO: Iterate through the map and print the unique words and their counts
-        // Format: "word: count"
-        for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
+        // Print results
+        for (Map.Entry<String, Integer> entry : freqMap.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
         
